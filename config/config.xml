@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+  <email isOn="false">
+    <from>4atest@asiainfo.com</from>
+    <to>tongxingwy@hotmail.com</to>
+    <cc name="tom">zhangtx@asiainfo.com</cc>
+    <sip>smtp.asiainfo.com</sip>
+    <sport>25</sport>
+    <user>4atest</user>
+    <pwd>128%abc</pwd>
+    <subject>hello test</subject>
+    <content>file://./report.html</content>
+    <attach></attach>
+  </email>
+  <tmpl isOn="true">
+    <filein>../config/tmpl.tpl</filein>
+    <fileout>./report.html</fileout>
+  </tmpl>
+  <dbs>
+    <db key="Imini" isOn="true">
+      <url>aiuap:aiuap@tcp(10.1.198.135:3306)/ai4a</url>
+      <sql>select * from uap_main_acct</sql>
+    </db>
+    <db key="Ihi4a" isOn="true">
+      <url>pesug:pesug@tcp(10.1.198.67:3306)/suggestion</url>
+      <sql>SELECT count(*) 'hi4a活跃度'
+  FROM uap_main_acct t
+ WHERE t.last_login_time BETWEEN CURDATE() AND NOW()
+UNION
+SELECT count(*)
+  FROM uap_main_acct t
+UNION
+SELECT concat(round((SELECT count(*)
+                       FROM uap_main_acct t
+                      WHERE t.last_login_time BETWEEN CURDATE() AND NOW()) /
+                    ((SELECT count(*) FROM uap_main_acct t)) * 100,
+                    2),
+              '%')
+</sql>
+    </db>
+  </dbs>
+</config>

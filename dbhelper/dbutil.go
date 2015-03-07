@@ -4,6 +4,8 @@ import(
   "database/sql"
     "fmt"
     _ "github.com/tongxingwy/mysql"
+    //"strings"
+    //"strconv"
   )
 
 
@@ -40,9 +42,9 @@ func (conn *Connection)Update(){
 }
 
 
-func (conn *Connection)Query(sqlStr string){
+func (conn *Connection)Query(sqlStr string) map[string]interface{}{
     if conn.db==nil {
-        return;
+      panic("please open database connection first!!")
     }
     // Execute the query
     rows, err := conn.db.Query(sqlStr)
@@ -52,10 +54,13 @@ func (conn *Connection)Query(sqlStr string){
 
     // Get column names
     columns, err := rows.Columns()
+    //types := make([]int, len(columns))
+
     if err != nil {
         panic(err.Error()) // proper error handling instead of panic in your app
     }
 
+    var data []interface{}
     // Make a slice for the values
     values := make([]sql.RawBytes, len(columns))
 
@@ -63,9 +68,16 @@ func (conn *Connection)Query(sqlStr string){
     // references into such a slice
     // See http://code.google.com/p/go-wiki/wiki/InterfaceSlice for details
     scanArgs := make([]interface{}, len(values))
+
     for i := range values {
+        //arr := strings.Split(columns[i],"`")
+        //columns[i] = arr[0]
+        //types[i],_ = strconv.Atoi(arr[1])
         scanArgs[i] = &values[i]
     }
+
+    dict := make(map[string]interface{})
+    dict["Columns"] = columns
 
     // Fetch rows
     for rows.Next() {
@@ -74,24 +86,33 @@ func (conn *Connection)Query(sqlStr string){
         if err != nil {
             panic(err.Error()) // proper error handling instead of panic in your app
         }
-
+        //log.Println("values:",values)
+        /*tmpbuf := make([]sql.RawBytes, len(values))
+        copy(tmpbuf,values)
+        data = append(data,tmpbuf)*/
+        var tmpbuf []interface{}
         // Now do something with the data.
         // Here we just print each column as a string.
         var value string
-        for i, col := range values {
+        for _, col := range values {
             // Here we can check if the value is nil (NULL value)
             if col == nil {
                 value = "NULL"
             } else {
                 value = string(col)
             }
-            fmt.Println(columns[i], ": ", value)
+            //fmt.Println(columns[i], ": ", value)
+            tmpbuf = append(tmpbuf,value)
         }
-        fmt.Println("-----------------------------------")
+        //fmt.Println("-----------------------------------")
+        data = append(data,tmpbuf)
+
     }
     if err = rows.Err(); err != nil {
         panic(err.Error()) // proper error handling instead of panic in your app
     }
+    dict["Data"] = data
+    return dict
 }
 
 
