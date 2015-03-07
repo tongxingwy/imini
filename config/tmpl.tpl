@@ -24,7 +24,7 @@
   						{{range .Data}}
   							<tr>
                   {{range .}}
-                    <td>{{printf "%s" .}}</td>
+                    <td>{{.}}</td>
       						{{end}}
                 </tr>
   						{{end}}
@@ -48,7 +48,7 @@
             {{range .Data}}
               <tr>
                 {{range .}}
-                  <td>{{printf "%s" .}}</td>
+                  <td>{{.}}</td>
                 {{end}}
               </tr>
             {{end}}
