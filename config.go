@@ -24,7 +24,7 @@ type _Email struct{
   From string `xml:"from"`
   To string `xml:"to"`
   Cc string `xml:"cc"`
-  CcUser string `xml:"name.attr"`
+  //CcUser string `xml:"name.attr"`
   Sip string `xml:"sip"`
   Sport string `xml:"sport"`
   User string `xml:"user"`

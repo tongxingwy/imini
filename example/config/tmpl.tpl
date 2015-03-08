@@ -13,34 +13,22 @@
 			<div>
         <table>
           <thead>
-            
-  						
-  							<th>4Amini活跃度</th>
-  						
-  					
+            {{with .Imini}}
+  						{{range .Columns}}
+  							<th>{{.}}</th>
+  						{{end}}
+  					{{end}}
           </thead>
           <tbody>
-            
-  						
+            {{with .Imini}}
+  						{{range .Data}}
   							<tr>
-                  
-                    <td>0</td>
-      						
+                  {{range .}}
+                    <td>{{.}}</td>
+      						{{end}}
                 </tr>
-  						
-  							<tr>
-                  
-                    <td>155</td>
-      						
-                </tr>
-  						
-  							<tr>
-                  
-                    <td>0.00%</td>
-      						
-                </tr>
-  						
-  					
+  						{{end}}
+  					{{end}}
           </tbody>
         </table>
 
@@ -49,34 +37,22 @@
       <div>
       <table>
         <thead>
-          
-            
-              <th>hi4a活跃度</th>
-            
-          
+          {{with .Ihi4a}}
+            {{range .Columns}}
+              <th>{{.}}</th>
+            {{end}}
+          {{end}}
         </thead>
         <tbody>
-          
-            
+          {{with .Ihi4a}}
+            {{range .Data}}
               <tr>
-                
-                  <td>0</td>
-                
+                {{range .}}
+                  <td>{{.}}</td>
+                {{end}}
               </tr>
-            
-              <tr>
-                
-                  <td>135</td>
-                
-              </tr>
-            
-              <tr>
-                
-                  <td>0.00%</td>
-                
-              </tr>
-            
-          
+            {{end}}
+          {{end}}
         </tbody>
       </table>
     </div>

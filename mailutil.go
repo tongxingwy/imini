@@ -6,15 +6,14 @@ import(
   "strconv"
   "regexp"
   "strings"
-  "log"
   )
 
 func SendEmail(email _Email){
   msg := gomail.NewMessage()
-  msg.SetHeader("From", email.From)
-  msg.SetHeader("To", email.To)
+  msg.SetSendUser(email.From)
+  msg.SetReceiver(email.To)
   if email.Cc != "" {
-    msg.SetAddressHeader("Cc", email.Cc, email.CcUser)
+    msg.SetCcUser(email.Cc)
   }
   msg.SetHeader("Subject", parseDataLayout(email.Subject))
   if email.Content!= "" {
@@ -44,7 +43,6 @@ func parseDataLayout(subject string) string{
   re := regexp.MustCompile("\\{\\{([^\\{\\{]+)\\}\\}")
   groups := re.FindAllStringSubmatch(subject,-1)
   for _,pairs := range groups{
-    log.Println(pairs,DateUtil.FormatNow(pairs[1]))
     subject = strings.Replace(subject, pairs[0], DateUtil.FormatNow(pairs[1]), -1)
   }
   return subject

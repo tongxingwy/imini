@@ -2,7 +2,7 @@
 <config>
   <email isOn="true">
     <from>4atest@asiainfo.com</from>
-    <to>4atest@126.com</to>
+    <to>tongxingwy@126.com</to>
     <cc>zhangtx@asiainfo.com</cc>
     <sip>mail.asiainfo.com</sip>
     <sport>25</sport>
@@ -13,7 +13,7 @@
     <attach></attach>
   </email>
   <tmpl isOn="true">
-    <filein>../config/tmpl.tpl</filein>
+    <filein>./config/tmpl.tpl</filein>
     <fileout>./report.html</fileout>
   </tmpl>
   <dbs>
