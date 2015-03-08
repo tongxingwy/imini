@@ -2,7 +2,11 @@ package imini
 
 import(
   "github.com/tongxingwy/gomail"
+  "github.com/tongxingwy/imini/dateutil"
   "strconv"
+  "regexp"
+  "strings"
+  "log"
   )
 
 func SendEmail(email _Email){
@@ -12,7 +16,7 @@ func SendEmail(email _Email){
   if email.Cc != "" {
     msg.SetAddressHeader("Cc", email.Cc, email.CcUser)
   }
-  msg.SetHeader("Subject", email.Subject)
+  msg.SetHeader("Subject", parseDataLayout(email.Subject))
   if email.Content!= "" {
     msg.SetBody("text/html", email.Content)
   }
@@ -34,4 +38,14 @@ func SendEmail(email _Email){
   if err := mailer.Send(msg); err != nil {
       panic(err)
   }
+}
+
+func parseDataLayout(subject string) string{
+  re := regexp.MustCompile("\\{\\{([^\\{\\{]+)\\}\\}")
+  groups := re.FindAllStringSubmatch(subject,-1)
+  for _,pairs := range groups{
+    log.Println(pairs,DateUtil.FormatNow(pairs[1]))
+    subject = strings.Replace(subject, pairs[0], DateUtil.FormatNow(pairs[1]), -1)
+  }
+  return subject
 }
