@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<title>OTA Mbbile4A</title>
+<meta charset="UTF-8" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+<style type="text/css">
+body,div,h1,p{ margin:0; padding:0;}
+body{ background:#C5CCD4;}
+a{ text-decoration:none;}
+.install{ position:relative; max-width:500px; margin:10px; padding:33px 10px 10px 80px; background:#fff; border:1px solid #d7d7d7; border-radius:5px; -webkit-box-shadow:0 1px 1px rgba(0,0,0,.5); line-height:14px;}
+.icon{ position:absolute; top:10px; left:10px;}
+.install h1{ position:absolute; top:14px; left:80px; color:#333; font-weight:bold; font-size:16px;}
+.install p{ margin-top:8px; font-size:12px; line-height:1.2; color:#999; }
+</style>
+</head>
+<body>
+<a href="https://192.168.2.101/apps/certs/ca.crt">
+    <div class="install">
+    <div class="icon"><img src="https://192.168.2.101/apps/mobile4a/icon.png"/></div>
+    <h1>安装ca证书</h1>
+    <p>软件大小：1k</p>
+    <p>安装完后需要重载 SpringBoard</p>
+    </div>
+</a>
+<a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/tongxingwy/imini/master/mobile4a/mobile4a.plist">
+    <div class="install">
+    <div class="icon"><img src="https://192.168.2.101/apps/mobile4a/icon.png"/></div>
+    <h1>安装 Mobile4A-1.0</h1>
+    <p>软件大小：7.6MB</p>
+    <p>确保您的iOS设备已经越狱，并且安装了Appsync，安装完后需要重载 SpringBoard</p>
+    </div>
+</a>
+<a href="itms-services://?action=download-manifest&url=https://192.168.2.101//apps/taskManager/taskManager.plist">
+    <div class="install">
+    <div class="icon"><img src="https://192.168.2.101//apps/taskManager/icon.png"/></div>
+    <h1>安装 taskManager-0.2</h1>
+    <p>软件大小：8.1MB</p>
+    <p>确保您的iOS设备已经越狱，并且安装了Appsync，安装完后需要重载 SpringBoard</p>
+    </div>
+</a>
+</body>
+</html>
