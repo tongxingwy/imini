@@ -64,10 +64,10 @@
        <string>software</string>
        <!-- optional. displayed during download; typically company name -->
        <key>subtitle</key>
-       <string>taskManager</string>
+       <string>oschina</string>
        <!-- required. the title to display during the download. -->
        <key>title</key>
-       <string>亚信掌上4A</string>
+       <string>oschina</string>
       </dict>
     </dict>
   </array>
