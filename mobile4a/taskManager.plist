@@ -24,7 +24,7 @@
           </array> -->
           <!-- required. the URL of the file to download. -->
           <key>url</key>
-          <string>https://github.com/tongxingwy/imini/blob/master/mobile4a/iosapp.ipa</string>
+          <string>https://github.com/tongxingwy/imini/blob/master/mobile4a/iosapp-en.ipa</string>
         </dict>
         <!-- display-image: the icon to display during download.-->
         <dict>
